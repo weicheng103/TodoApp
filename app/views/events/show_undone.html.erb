@@ -1,0 +1,9 @@
+<h1>Show_undone</h1>
+<ul>
+<% @events.each do |event| %>
+      <li>
+ 	  <%= event.name %> <br>
+     </li>  
+<% end %>
+</ul>
+<p><%= link_to 'Back to index', :controller => 'events', :action => 'index' %></p>

@@ -1,7 +1,10 @@
 class EventsController < ApplicationController
+	
 	def index
+		
 		@events = Event.all
 		@e = Event.new
+		
 	end
 
 	def edit
@@ -15,14 +18,21 @@ class EventsController < ApplicationController
 		redirect_to :action => :index
 	end
 
-	def show
-		if params[:is_done].present?
-		@courses = @courses.where("is_done"
+	def show_done
+		
+	 @events = Event.all.where(:is_done => true)
+		
 	end
-
+	
+	def show_undone
+	
+		@events = Event.all.where(:is_done => false)
+	end
+	
+	
 	def create
 		@event = Event.new(event_params)
-		@event.is_done = true
+		@event.is_done = false
 		@event.save
 
 		redirect_to :action => :index
@@ -37,6 +47,8 @@ class EventsController < ApplicationController
 		elsif @event.is_done == false
 			@event.is_done = true
 		end
+		
+	
 		
 		@event.save
 

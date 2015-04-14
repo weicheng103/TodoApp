@@ -7,16 +7,26 @@
 
 <h1>Todo List</h1>
 
-<%= button_to 'Done_list', :controller =>'events',:action =>'show' %>
+<%= button_to 'Done_list', :controller =>'events',:action =>'show_done' %>
+<%= button_to 'Undone_list', :controller =>'events',:action => 'show_undone'%>
 
 <ul>
 	<% @events.each do |event| %>
 	<li>
-		<%= event.name %>
-
+		<% if event.is_done == true %>
+		<del><%=  event.name  %></del>
 		<%= link_to 'Edit', :controller => 'events', :action => 'edit', :id => event %>
 		<%= link_to 'Delete', :controller => 'events', :action => 'destroy', :id => event %>
 		<%= button_to 'change', :controller => 'events', :action => 'change', :id => event %>
+		<% end %>
+		
+		<% if event.is_done == false %>
+		<%= event.name %>
+		<%= link_to 'Edit', :controller => 'events', :action => 'edit', :id => event %>
+		<%= link_to 'Delete', :controller => 'events', :action => 'destroy', :id => event %>
+		<%= button_to 'change', :controller => 'events', :action => 'change', :id => event %>
+		<% end %>
+
 	</li>
-	<%end%>
+	<% end %>
 </ul>

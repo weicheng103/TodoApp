@@ -1,0 +1,9 @@
+<h1>Show_done</h1>
+
+<% @events.each do |event| %>
+  
+ 	  <%= event.name %> <br>
+ 	  
+<% end %>
+
+<p><%= link_to 'Back to index', :controller => 'events', :action => 'index' %></p>
